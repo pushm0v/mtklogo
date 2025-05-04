@@ -153,6 +153,15 @@ profiles:
     - { w: 108, h: 121}
     # charge line - 608 bytes
     - { w: 304, h: 1}
+  
+  - name: redmi13c
+    color_model: bgrabe
+    formats:
+    - { w: 720, h: 1600 }
+    - { w: 45, h: 64 }
+    - { w: 57, h: 64 }
+    - { w: 180, h: 32 }
+    - { w: 180, h: 2 }
 
   # Your profile here!
   # - name: my_fantastic_phone
