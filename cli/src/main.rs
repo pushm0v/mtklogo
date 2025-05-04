@@ -114,6 +114,27 @@ this is useful is you don't know the image format, you'll probably find out.")
             .arg(&slots_arg)
         )
 
+        .subcommand(SubCommand::with_name("bruteforce")
+            .about("Unpacks a logo image trying all possible widths up to specified maximum\n\
+this is useful if you don't know the image format and want to try all possibilities.")
+            .arg(Arg::with_name("output")
+                .help("Sets images output directory")
+                .value_name("output")
+                .takes_value(true)
+                .short("o")
+                .long("output")
+                .validator(is_existing_directory))
+            .arg(Arg::with_name("width")
+                .help("Maximum image width in pixels to try")
+                .value_name("width")
+                .required(true)
+                .takes_value(true)
+                .short("w")
+                .long("width"))
+            .arg(&path_arg)
+            .arg(&slots_arg)
+        )
+
         .subcommand(SubCommand::with_name("guess")
             .about("Tries to guess an image dimension knowing its buffer size.\n\
 Note: the program may be very slow if your input size is a large prime number!")
@@ -168,6 +189,12 @@ Note: the program may be very slow if your input size is a large prime number!")
         let width = parse_or_error::<u32>(matches, "width")?;
         let slots = solve_slots(matches)?;
         command::run_explore(path, slots, output, width)
+    } else if let Some(matches) = matches.subcommand_matches("bruteforce") {
+        let path = solve_path(matches)?;
+        let output = solve_output(matches)?;
+        let width = parse_or_error::<u32>(matches, "width")?;
+        let slots = solve_slots(matches)?;
+        command::run_bruteforce(path, slots, output, width)
     } else if let Some(matches) = matches.subcommand_matches("repack") {
         let maybe_files = matches.values_of("files")
             .map(|vals| vals.collect::<Vec<_>>());

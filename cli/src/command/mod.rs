@@ -4,6 +4,7 @@ pub use self::explore::run_explore;
 pub use self::guess::run_guess;
 pub use self::repack::run_repack;
 pub use self::unpack::run_unpack;
+pub use self::bruteforce::run_bruteforce;
 use std::fmt::Display;
 use super::mtklogo;
 
@@ -11,6 +12,7 @@ mod unpack;
 mod repack;
 mod explore;
 mod guess;
+mod bruteforce;
 
 /// formats a command.
 pub fn cmd<'a, I>(input: I) -> ANSIGenericString<'a, str>
