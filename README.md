@@ -191,6 +191,14 @@ It could be 199680 x 4 ... 798720 = (2^10 * 3 * 5 * 13) * 4
 ... snip
 ```
 
+### `bruteforce` command
+
+`bruteforce` is a very simple command which just tries to find the best image encoding for a given size.
+It's a very simple command, but it's very slow. It's not recommended to use it with large images.
+It's just a proof of concept.
+Example:
+```bash
+mtklogo bruteforce --size 3194880
 
 ## Build and Install instructions
 
